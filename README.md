@@ -136,3 +136,6 @@ Run it with:
     docker run -d --name app -p 80:80 <your_docker_hub_id>/<your_project_name>:1.1.0
 
 ## Conclusion
+
+Using Docker Hub to build your images each time the code is modified and pushed to repository has some limitations. As of today it will build your images maximum every 5 minutes. But it is certainly a very cheap way of doing so and should get most developers integrating good practices very early. Later on, you might want to look into hosting your own private docker registry, using base images of your making or even have your own building and pushing process for your images.
+Next time, we will explore how to run unit tests using on our application.
