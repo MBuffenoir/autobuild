@@ -2,11 +2,13 @@
 
 This tutorial will be the first of a series helping you create continuous integration and deployment (CI/CD) pipelines for your applications.
 
-CI/CD are vital in an Agile organization. We are goint to discover how the addition of Docker tools in our toolkit, can greatly improves application update, testing and shipping.
+CI/CD pipelines are vital in an Agile organization. We are going to discover how the addition of Docker tools in our toolkit can greatly improve application updates, testing, and shipping.
 
-Depending on your ressources and constraints, there are of course multiple ways of achieving such a goal. We are going to start simple and discover the free tools that Docker made available to us.
+Depending on your resources and constraints, there are of course multiple ways of achieving such a goal. We are going to start simple and discover the free tools that Docker made available to us.
 
-You are going to create a Dockerfile for a simple web application, built it, get it to run locally, store it online and create your first automated build on Docker Hub.
+You are going to create a Dockerfile for a simple web application, build it, get it to run locally, store it online, and create your first automated build on Docker Hub. 
+
+This approach has some limitations, outlined below, but it is certainly a very cheap and easy way to get most developers integrating good CI/CD practices very quickly. 
 
 ## Requirements
 
@@ -16,7 +18,7 @@ You are going to create a Dockerfile for a simple web application, built it, get
 
 ## Create a local repo for your app
 
-For this tutorial you will use a very simple Flask application, written in python, and create a production ready docker image.
+For this tutorial you will use a very simple Flask application, written in python, and create a production ready Docker image.
 
 Create a folder for your application code and initiate a git repo in it with:
 
@@ -40,7 +42,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0')
 ```
 
-Docker helps us stay as much [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) as possible, buy giving us the ability to extend an already existing image. Here, I propose to use the image [jazzdd/alpine-flask](https://hub.docker.com/r/jazzdd/alpine-flask/), as it based on Alpine Linux, thus very lightweight.
+Docker helps us stay as [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) as possible, by giving us the ability to extend an already existing image. Here, I propose to use the image [jazzdd/alpine-flask](https://hub.docker.com/r/jazzdd/alpine-flask/), as it is based on Alpine Linux, thus very lightweight.
 
 Create a Dockerfile with the following content in it:
 
@@ -88,7 +90,7 @@ If you navigate through the web interface, you should now see the code of your a
 
 In the top right part of your Docker Hub account web interface, click on the create automatic build button: ![create-automated-build](create-autobuild.png) and follow the process, which is really self-explanatory.
 
-As the [documentation](https://docs.docker.com/docker-hub/builds/) is not exactly up to date, you will need to trigger the first build manually by clicking on the Trigger button in the Build settings tab:
+As the [documentation](https://docs.docker.com/docker-hub/builds/) is not exactly up-to-date, you will need to trigger the first build manually by clicking on the Trigger button in the Build settings tab:
 
 ![trigger](trigger.png)
 
@@ -102,11 +104,11 @@ Stop and remove this container, once you're done with it.
 
 ## Version tagging
 
-One of the most interesting feature of the Hub is the ability to tag your docker images. This way you can easily differentiate between them and, in case of problem with a specific version, perform a role-back.
+One of the most interesting features of the Hub is the ability to tag your Docker images. This way you can easily differentiate between them and, in case of a problem with a specific version, perform a rollback.
 
 In most cases the default configuration should suffice. It is very well integrated with Github and Bitbucket repositories.
 
-When using a specific git branch name, Docker Hub will create docker images with the matching tags.
+When using a specific git branch name, Docker Hub will create Docker images with the matching tags.
 
 Create a branch for a newer version of your code:
 
@@ -137,5 +139,5 @@ Run it with:
 
 ## Conclusion
 
-Using Docker Hub to build your images each time the code is modified and pushed to repository has some limitations. As of today it will build your images maximum every 5 minutes. But it is certainly a very cheap way of doing so and should get most developers integrating good practices very early. Later on, you might want to look into hosting your own private docker registry, using base images of your making or even have your own building and pushing process for your images.
-Next time, we will explore how to run unit tests using on our application.
+As I mentioned earlier, using Docker Hub to build your images each time the code is modified and pushed to repository has some limitations. As of today it will build your images at the most every 5 minutes. But it is certainly a very cheap way of doing so [Compared to what?]. Later on, you might want to look into hosting your own private Docker registry using base images of your making. Or you may even choose to have your own building and pushing process for your images.
+Next time, we will explore how to run unit tests using [Using what?] on our application.
