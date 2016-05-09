@@ -2,9 +2,9 @@
 
 This tutorial will be the first of a series helping you create continuous integration and deployment (CI/CD) pipelines for your applications.
 
-CI/CD are vital in an Agile organization. We are goint to discover how the addition of Docker tools in our toolkit, can greatly improves application update, testing and shipping.
+CI/CD are vital in an Agile organization. We are going to discover how the addition of Docker tools in our toolkit, can greatly improves application update, testing and shipping.
 
-Depending on your ressources and constraints, there are of course multiple ways of achieving such a goal. We are going to start simple and discover the free tools that Docker made available to us.
+Depending on your ressources and constraints, there are of course multiple ways of achieving such a goal. Here, we are going to start simple and discover the free tools that Docker made available to us.
 
 You are going to create a Dockerfile for a simple web application, built it, get it to run locally, store it online and create your first automated build on Docker Hub.
 
@@ -16,7 +16,7 @@ You are going to create a Dockerfile for a simple web application, built it, get
 
 ## Create a local repo for your app
 
-For this tutorial you will use a very simple Flask application, written in python, and create a production ready docker image.
+For this tutorial you will use a very simple Flask application, written in python, and create a production ready Docker image.
 
 Create a folder for your application code and initiate a git repo in it with:
 
@@ -40,7 +40,7 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0')
 ```
 
-Docker helps us stay as much [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) as possible, buy giving us the ability to extend an already existing image. Here, I propose to use the image [jazzdd/alpine-flask](https://hub.docker.com/r/jazzdd/alpine-flask/), as it based on Alpine Linux, thus very lightweight.
+Docker helps us stay as much [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) as possible, buy giving us the ability to extend an already existing image. Here, I propose to use the image [jazzdd/alpine-flask](https://hub.docker.com/r/jazzdd/alpine-flask/), as it is based on Alpine Linux, thus very lightweight.
 
 Create a Dockerfile with the following content in it:
 
@@ -102,11 +102,11 @@ Stop and remove this container, once you're done with it.
 
 ## Version tagging
 
-One of the most interesting feature of the Hub is the ability to tag your docker images. This way you can easily differentiate between them and, in case of problem with a specific version, perform a role-back.
+One of the most interesting feature of the Hub is the ability to tag your Docker images. This way you can easily differentiate between them and, in case of problem with a specific version, perform a role-back.
 
 In most cases the default configuration should suffice. It is very well integrated with Github and Bitbucket repositories.
 
-When using a specific git branch name, Docker Hub will create docker images with the matching tags.
+When using a specific git branch name, Docker Hub will create your images with the matching tags.
 
 Create a branch for a newer version of your code:
 
@@ -135,7 +135,10 @@ Run it with:
 
     docker run -d --name app -p 80:80 <your_docker_hub_id>/<your_project_name>:1.1.0
 
+Bravo, you just connected to the version 1.1.0 of your application !
+
 ## Conclusion
 
-Using Docker Hub to build your images each time the code is modified and pushed to repository has some limitations. As of today it will build your images maximum every 5 minutes. But it is certainly a very cheap way of doing so and should get most developers integrating good practices very early. Later on, you might want to look into hosting your own private docker registry, using base images of your making or even have your own building and pushing process for your images.
-Next time, we will explore how to run unit tests using on our application.
+As I mentioned earlier, using Docker Hub to build your images each time the code is modified and pushed to repository has some limitations. As of today it will build your images at the most every 5 minutes. But it is certainly a very cheap way of doing so as you don't have to maintain your own repository. Later on, you might want to look into using base images of your making and hosting your own private Docker registry for obvious privacy and performance reasons.
+
+Next time, we will explore how to run unit tests on your application using Travis.
